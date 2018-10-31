@@ -3,7 +3,6 @@ require 'boris_bikes'
 describe DockingStation do
   it { should respond_to(:release_bike) }
 
-
   it 'gets a bike' do
     bike = Bike.new
     subject.dock(bike)
@@ -25,9 +24,17 @@ describe DockingStation do
     expect(station.dock(bike)).to eq(bike)
   end
 
-describe '#release_bike' do
+  describe '#release_bike' do
   it 'raisers an error when there is no bikes' do
     expect { subject.release_bike }.to raise_error "No bikes"
   end
 end
+
+describe '#dock(bike)' do
+it 'raisers an error when there docking station is full' do
+  bike = Bike.new
+  expect { 2.times {subject.dock(bike)}}.to raise_error "Station is full"
+end
+end
+
 end
