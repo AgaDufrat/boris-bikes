@@ -3,9 +3,11 @@ require 'boris_bikes'
 describe DockingStation do
   it { should respond_to(:release_bike) }
 
+
   it 'gets a bike' do
-    station = DockingStation.new
-    expect(station.release_bike).to be_an_instance_of(Bike)
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.release_bike).to eq bike
   end
 
   it 'expects the bike to be working' do
@@ -20,6 +22,12 @@ describe DockingStation do
   it 'expects bike to dock with DockingStation' do
     station = DockingStation.new
     bike = Bike.new
-    expect(station.dock(bike)).to include(bike)
+    expect(station.dock(bike)).to eq(bike)
   end
+
+describe '#release_bike' do
+  it 'raisers an error when there is no bikes' do
+    expect { subject.release_bike }.to raise_error "No bikes"
+  end
+end
 end

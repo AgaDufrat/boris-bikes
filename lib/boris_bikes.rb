@@ -1,20 +1,19 @@
 class DockingStation
-  attr_reader = @bike_instance
+  attr_reader = @bike
   def release_bike
-    Bike.new
+    fail "No bikes" unless @bike
+    @bike
   end
 
   def dock(bike)
-    @bike_instance = []
-    @bike_instance << bike
+    @bike = bike
   end
 end
 
 class Bike
-  attr_reader = @status
+  attr_reader = @status, @bike
 
   def initialize()
-
   end
 
   def working?
