@@ -12,4 +12,14 @@ describe DockingStation do
     bike = Bike.new
     expect(bike.working?).to eq "working"
   end
+
+  it 'expects station works with dock' do
+    expect(subject).to respond_to(:dock)
+  end
+
+  it 'expects bike to dock with DockingStation' do
+    station = DockingStation.new
+    bike = Bike.new
+    expect(station.dock(bike)).to include(bike)
+  end
 end
