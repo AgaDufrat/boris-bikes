@@ -20,12 +20,15 @@ class DockingStation
     fail "no working bikes" if @bikes.select { |bike| bike.working }.empty?
   end
 
-  def dock(bike, works = bike.working)
+  def dock(bike)
     fail "Station is full" if full?
-    bike.working = works
     @bikes.push(bike)
   end
 
+ def is_bike_broken?(bike)
+    bike.working
+ end
+ 
 private
   def full?
     true if @bikes.size >= @capacity
@@ -43,6 +46,5 @@ class Bike
   def initialize()
     @working = true
   end
-
 
 end
